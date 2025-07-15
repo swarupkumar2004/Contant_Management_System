@@ -106,16 +106,16 @@ Content-Type: application/json
 
 ```json
 {
-  "name": "John Doe",
-  "email": "john@example.com",
-  "phone": "1234567890"
+  "name": "Sk",
+  "email": "sk@gmail.com",
+  "phone": "90909090"
 }
 ```
 
 ### Real-Time Output on Frontend Page:
 
 ```
-[CREATED] John Doe - john@example.com
+[CREATED] Sk - Sk@gmail.com
 ```
 
 ---
@@ -124,9 +124,9 @@ Content-Type: application/json
 
 Shows real-time messages like:
 
-* `[CREATED] John Doe - john@example.com`
-* `[UPDATED] Jane Smith - jane@example.com`
-* `[DELETED] Alice - alice@example.com`
+* `[CREATED] SK - sk@gmail.com`
+* `[UPDATED] BB - bb@gmail.com`
+* `[DELETED] Alok - alok@gmail.com`
 
 ---
 
@@ -137,25 +137,3 @@ Shows real-time messages like:
 * Consider configuring Nginx + Daphne/Uvicorn + Redis for a full-stack production setup.
 
 ---
-
-## 📄 License
-
-MIT License
-
----
-
-> Need Docker or Redis support? Let me know, and I’ll help you extend this setup for production.
-
-```
-
----
-
-Let me know if you want me to:
-
-- Add Docker setup instructions  
-- Switch to Redis-based channel layer for production  
-- Add authentication or login system  
-- Package this as an installable app or deployable project (Heroku/Vercel/etc.)
-
-I'm happy to help!
-```

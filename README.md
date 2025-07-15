@@ -1,94 +1,161 @@
-# Contant_Management_System
-📇 Contact Management System (Django + WebSocket)
-This is a simple real-time contact management system built with Django, Django REST Framework, and Django Channels. It allows users to create, update, and delete contacts and view real-time updates through WebSocket.
+# 📇 Contact Management System (Django + WebSocket)
 
-✨ Features
-Create, update, and delete contacts via REST API
+A simple real-time contact management system built with **Django**, **Django REST Framework**, and **Django Channels**. It allows users to **create, update, and delete contacts** while receiving **real-time updates** via WebSocket — all without needing Redis.
 
-Real-time broadcast of contact changes via WebSocket
+---
 
-Frontend WebSocket test UI (HTML + JavaScript)
+## ✨ Features
 
-No Redis required (uses InMemoryChannelLayer)
+- 🔧 Create, update, and delete contacts via REST API  
+- 🔁 Real-time contact change broadcasts using WebSocket  
+- 🧪 Simple frontend WebSocket UI (HTML + JavaScript)  
+- ❌ No Redis required (uses `InMemoryChannelLayer` for development)
 
-🚀 Tech Stack
-Python 3.10+
+---
 
-Django 5.2.4
+## 🚀 Tech Stack
 
-Django REST Framework
+- Python 3.10+  
+- Django 5.2.4  
+- Django REST Framework  
+- Django Channels  
+- Daphne (ASGI server)
 
-Django Channels
+---
 
-Daphne ASGI server
+## 📁 Project Structure
 
-📁 Project Structure
-contact_manager/
-├── contacts/ # Django app for managing contacts
-│ ├── models.py # Contact model
-│ ├── views.py # API views with WebSocket broadcast
-│ ├── consumers.py # Channels WebSocket consumer
-│ ├── routing.py # WebSocket URL routing
-│ ├── templates/
-│ │ └── contacts/
-│ │ └── ws_test.html # WebSocket frontend
-├── contact_manager/
-│ ├── settings.py # Django settings (ASGI + Channels config)
-│ ├── urls.py # Django URL routing
-│ ├── asgi.py # ASGI application setup
-├── db.sqlite3 # SQLite database
+```
+
+contact\_manager/
+├── contacts/                  # Django app for managing contacts
+│   ├── models.py             # Contact model
+│   ├── views.py              # API views with WebSocket broadcast
+│   ├── consumers.py          # Channels WebSocket consumer
+│   ├── routing.py            # WebSocket URL routing
+│   ├── templates/
+│   │   └── contacts/
+│   │       └── ws\_test.html  # WebSocket frontend page
+├── contact\_manager/
+│   ├── settings.py           # Django settings with Channels config
+│   ├── urls.py               # Main URL routing
+│   ├── asgi.py               # ASGI application setup
+├── db.sqlite3                # SQLite database
 ├── requirements.txt
 └── README.md
 
-⚙️ Installation
-Clone the repository:
+````
 
+---
+
+## ⚙️ Installation
+
+### 1. Clone the Repository
+```bash
 git clone https://github.com/yourusername/contact-manager.git
 cd contact-manager
+````
 
-Create and activate a virtual environment:
+### 2. Create and Activate Virtual Environment
 
+```bash
 python -m venv myvenv
-source myvenv/bin/activate # On Windows: myvenv\Scripts\activate
+source myvenv/bin/activate        # On Windows: myvenv\Scripts\activate
+```
 
-Install dependencies:
+### 3. Install Dependencies
 
+```bash
 pip install -r requirements.txt
+```
 
-Apply migrations:
+### 4. Apply Database Migrations
 
+```bash
 python manage.py migrate
+```
 
-Run the ASGI server:
+### 5. Run the ASGI Server with Daphne
 
+```bash
 daphne -b 127.0.0.1 -p 8000 contact_manager.asgi:application
+```
 
-Access the frontend WebSocket test page:
+---
 
-Open browser to:
+## 🌐 Access the WebSocket Frontend
+
+Open your browser to:
+
+```
 http://127.0.0.1:8000/api/ws-test/
+```
 
-Use Thunder Client / Postman to POST/PUT/DELETE:
+---
 
+## 📬 Example API Usage (via Thunder Client / Postman)
+
+### Create Contact (POST)
+
+```
 POST http://127.0.0.1:8000/api/contacts/
 Content-Type: application/json
+```
 
+#### Request Body:
+
+```json
 {
-"name": "John Doe",
-"email": "john@example.com",
-"phone": "1234567890"
+  "name": "John Doe",
+  "email": "john@example.com",
+  "phone": "1234567890"
 }
+```
 
-Each change will appear live on the frontend.
+### Real-Time Output on Frontend Page:
 
-✅ WebSocket Frontend Page
-Displays real-time updates like:
+```
 [CREATED] John Doe - john@example.com
+```
 
-⚠️ Notes
-This uses Django's InMemoryChannelLayer (not production ready).
+---
 
-To scale this for production, use Redis as the channel layer backend.
+## ✅ WebSocket Frontend Page
 
-📄 License
+Shows real-time messages like:
+
+* `[CREATED] John Doe - john@example.com`
+* `[UPDATED] Jane Smith - jane@example.com`
+* `[DELETED] Alice - alice@example.com`
+
+---
+
+## ⚠️ Notes
+
+* This uses `InMemoryChannelLayer` — not recommended for production.
+* For deployment, use Redis as the Channels backend for performance and scalability.
+* Consider configuring Nginx + Daphne/Uvicorn + Redis for a full-stack production setup.
+
+---
+
+## 📄 License
+
 MIT License
+
+---
+
+> Need Docker or Redis support? Let me know, and I’ll help you extend this setup for production.
+
+```
+
+---
+
+Let me know if you want me to:
+
+- Add Docker setup instructions  
+- Switch to Redis-based channel layer for production  
+- Add authentication or login system  
+- Package this as an installable app or deployable project (Heroku/Vercel/etc.)
+
+I'm happy to help!
+```
